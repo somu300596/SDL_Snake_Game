@@ -43,6 +43,23 @@ void Renderer::Render(Snake const snake, SDL_Point const &food) {
   block.w = screen_width / grid_width;
   block.h = screen_height / grid_height;
 
+  if (first_time == true)
+    {
+	  IMG_Init(IMG_INIT_PNG);
+	  texture = IMG_LoadTexture(sdl_renderer, "title.jpeg");
+	  SDL_RenderCopy(sdl_renderer, texture, NULL, NULL);
+	  SDL_RenderPresent(sdl_renderer);
+	  SDL_Delay(5000);
+	  SDL_DestroyTexture(texture);
+	  IMG_Quit();
+
+	  // Clear screen
+	  SDL_SetRenderDrawColor(sdl_renderer, 0x1E, 0x1E, 0x1E, 0xFF);
+	  SDL_RenderClear(sdl_renderer);
+
+	  first_time = false;
+    }
+
   // Clear screen
   SDL_SetRenderDrawColor(sdl_renderer, 0x1E, 0x1E, 0x1E, 0xFF);
   SDL_RenderClear(sdl_renderer);
